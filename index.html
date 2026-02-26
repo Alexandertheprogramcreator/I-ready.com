@@ -9,33 +9,40 @@
 <body>
     
     <div class="calculator">
+        <!-- 'disabled' prevents users from typing directly, 'id' links to JS -->
         <input type="text" id="display" disabled placeholder="0">
+        
         <div class="buttons">
+            <!-- Functional Buttons -->
             <button onclick="clearDisplay()" class="operator">C</button>
             <button onclick="deleteLast()" class="operator">DEL</button>
             <button onclick="appendToDisplay('/')" class="operator">/</button>
             <button onclick="appendToDisplay('*')" class="operator">×</button>
             
+            <!-- Number Row 1 -->
             <button onclick="appendToDisplay('7')">7</button>
             <button onclick="appendToDisplay('8')">8</button>
             <button onclick="appendToDisplay('9')">9</button>
             <button onclick="appendToDisplay('-')" class="operator">-</button>
             
+            <!-- Number Row 2 -->
             <button onclick="appendToDisplay('4')">4</button>
             <button onclick="appendToDisplay('5')">5</button>
             <button onclick="appendToDisplay('6')">6</button>
             <button onclick="appendToDisplay('+')" class="operator">+</button>
             
+            <!-- Number Row 3 & Equals -->
             <button onclick="appendToDisplay('1')">1</button>
             <button onclick="appendToDisplay('2')">2</button>
             <button onclick="appendToDisplay('3')">3</button>
             <button onclick="calculate()" class="equal">=</button>
             
+            <!-- Bottom Row -->
             <button onclick="appendToDisplay('0')" class="zero">0</button>
             <button onclick="appendToDisplay('.')">.</button>
         </div>
     </div>
+
     <script src="calculator.js"></script>
-    .
 </body>
 </html>
