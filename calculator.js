@@ -16,7 +16,7 @@ function deleteLast() {
     display.value = display.value.slice(0, -1);
 }
 
-// 4. Your Custom Calculate Logic
+// Custom Calculate Logic
 function calculate() {
     try {
         if (display.value === "") return;
