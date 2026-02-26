@@ -4,45 +4,115 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>I-Ready.com</title>
-    <link rel="stylesheet" href="calculator.css">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+            font-family: sans-serif;
+        }
+        .calculator {
+            background-color: #333;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            width: 320px;
+        }
+        #display {
+            width: 100%;
+            height: 60px;
+            font-size: 32px;
+            text-align: right;
+            margin-bottom: 15px;
+            padding: 10px;
+            box-sizing: border-box;
+            border: none;
+            border-radius: 5px;
+            background: #eee;
+            color: #333;
+        }
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+        button {
+            padding: 20px;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #555;
+            color: white;
+            transition: background 0.2s, transform 0.1s;
+        }
+        button:hover { background-color: #777; }
+        button:active { transform: scale(0.95); }
+        .operator { background-color: #ff9500; }
+        .operator:hover { background-color: #e68600; }
+        .equal { 
+            background-color: #ff9500; 
+            grid-row: span 2; 
+        }
+        .zero { grid-column: span 2; }
+    </style>
 </head>
 <body>
-    
     <div class="calculator">
-        <!-- 'disabled' prevents users from typing directly, 'id' links to JS -->
         <input type="text" id="display" disabled placeholder="0">
-        
         <div class="buttons">
-            <!-- Functional Buttons -->
             <button onclick="clearDisplay()" class="operator">C</button>
             <button onclick="deleteLast()" class="operator">DEL</button>
             <button onclick="appendToDisplay('/')" class="operator">/</button>
             <button onclick="appendToDisplay('*')" class="operator">×</button>
-            
-            <!-- Number Row 1 -->
             <button onclick="appendToDisplay('7')">7</button>
             <button onclick="appendToDisplay('8')">8</button>
             <button onclick="appendToDisplay('9')">9</button>
             <button onclick="appendToDisplay('-')" class="operator">-</button>
-            
-            <!-- Number Row 2 -->
             <button onclick="appendToDisplay('4')">4</button>
             <button onclick="appendToDisplay('5')">5</button>
             <button onclick="appendToDisplay('6')">6</button>
             <button onclick="appendToDisplay('+')" class="operator">+</button>
-            
-            <!-- Number Row 3 & Equals -->
             <button onclick="appendToDisplay('1')">1</button>
             <button onclick="appendToDisplay('2')">2</button>
             <button onclick="appendToDisplay('3')">3</button>
             <button onclick="calculate()" class="equal">=</button>
-            
-            <!-- Bottom Row -->
             <button onclick="appendToDisplay('0')" class="zero">0</button>
             <button onclick="appendToDisplay('.')">.</button>
         </div>
     </div>
-
-    <script src="calculator.js"></script>
+    <script>
+        const display = document.getElementById("display");
+        function appendToDisplay(input) {
+            display.value += input;
+        }
+        function clearDisplay() {
+            display.value = "";
+        }
+        function deleteLast() {
+            display.value = display.value.slice(0, -1);
+        }
+        function calculate() {
+            try {
+                if (display.value === "") return;
+                let result = eval(display.value);
+                if (result === Infinity || result === -Infinity) {
+                    display.value = "DIDDY"; 
+                    setTimeout(() => {
+                        window.alert("WHAT IS DIDDY BLUD DOING ON MY CALCULATOR!!??");
+                        clearDisplay();
+                    }, 10); 
+                } else {
+                    display.value = result;
+                }
+            } catch (error) {
+                display.value = "Error";
+                window.alert("Alexander Sanders the king of math and programming formulas does not approve of this mathematical incompetence and a transgression to the power of the homemade calculator and does not behave kindly to those who mock the power of the homemade calculator. Use this ability appropriately, All hail Alexander Sanders - Alexander Sanders");
+            }
+        }
+    </script>
 </body>
 </html>
